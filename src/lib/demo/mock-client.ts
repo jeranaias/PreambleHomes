@@ -236,7 +236,7 @@ export function createMockClient(role = "buyer") {
     },
 
     rpc(_name: string, _params?: any) {
-      return Promise.resolve({ data: null, error: null });
+      return new MockMutationBuilder(null);
     },
 
     storage: {
