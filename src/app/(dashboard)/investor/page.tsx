@@ -43,8 +43,8 @@ export default async function InvestorDashboard() {
       <div className="grid grid-cols-3 gap-4">
         {[
           { label: "Active Opportunities", value: (listings || []).length, icon: Target },
-          { label: "Negotiable", value: (listings || []).filter((l) => l.price_negotiable).length, icon: DollarSign },
-          { label: "New This Week", value: (listings || []).filter((l) => {
+          { label: "Negotiable", value: (listings || []).filter((l: any) => l.price_negotiable).length, icon: DollarSign },
+          { label: "New This Week", value: (listings || []).filter((l: any) => {
             const weekAgo = new Date();
             weekAgo.setDate(weekAgo.getDate() - 7);
             return new Date(l.created_at) > weekAgo;

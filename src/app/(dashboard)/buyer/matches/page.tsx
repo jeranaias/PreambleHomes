@@ -20,12 +20,13 @@ export default async function BuyerMatchesPage() {
     .eq("buyer_searches.buyer_id", user.id)
     .order("match_score", { ascending: false });
 
-  const allMatches = matches || [];
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const allMatches: any[] = matches || [];
   const activeMatches = allMatches.filter(
-    (m) => !["closed_won", "closed_lost", "expired"].includes(m.status)
+    (m: any) => !["closed_won", "closed_lost", "expired"].includes(m.status)
   );
   const closedMatches = allMatches.filter(
-    (m) => ["closed_won", "closed_lost", "expired"].includes(m.status)
+    (m: any) => ["closed_won", "closed_lost", "expired"].includes(m.status)
   );
 
   return (

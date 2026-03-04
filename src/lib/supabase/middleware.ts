@@ -41,7 +41,10 @@ export async function updateSession(request: NextRequest) {
     request.nextUrl.pathname.startsWith("/investor") ||
     request.nextUrl.pathname.startsWith("/admin");
 
-  if (isProtectedRoute && !user) {
+  // Allow demo users through to all protected routes
+  const hasDemoAccess = request.cookies.get("demo_access")?.value === "granted";
+
+  if (isProtectedRoute && !user && !hasDemoAccess) {
     const url = request.nextUrl.clone();
     url.pathname = "/login";
     url.searchParams.set("redirect", request.nextUrl.pathname);

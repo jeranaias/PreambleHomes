@@ -1,8 +1,17 @@
 import { createServerClient } from "@supabase/ssr";
 import { cookies } from "next/headers";
+import { createMockClient } from "@/lib/demo/mock-client";
 
 export async function createClient() {
   const cookieStore = await cookies();
+
+  // Demo mode: return mock client instead of real Supabase
+  const isDemoMode = cookieStore.get("demo_access")?.value === "granted";
+  if (isDemoMode) {
+    const role = cookieStore.get("demo_role")?.value || "buyer";
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    return createMockClient(role) as any;
+  }
 
   const url = process.env.NEXT_PUBLIC_SUPABASE_URL || "https://placeholder.supabase.co";
   const key = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || "placeholder";

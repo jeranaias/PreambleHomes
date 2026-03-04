@@ -18,9 +18,10 @@ export default async function LenderDashboard() {
     .eq("lender_id", user.id)
     .order("created_at", { ascending: false });
 
-  const allReferrals = referrals || [];
-  const activeReferrals = allReferrals.filter((r) => !["funded", "lost"].includes(r.status));
-  const funded = allReferrals.filter((r) => r.status === "funded");
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const allReferrals: any[] = referrals || [];
+  const activeReferrals = allReferrals.filter((r: any) => !["funded", "lost"].includes(r.status));
+  const funded = allReferrals.filter((r: any) => r.status === "funded");
 
   return (
     <div className="space-y-6">
@@ -32,7 +33,7 @@ export default async function LenderDashboard() {
           { label: "Total Referrals", value: allReferrals.length, icon: Users },
           { label: "Active", value: activeReferrals.length, icon: Clock },
           { label: "Funded", value: funded.length, icon: CheckCircle },
-          { label: "Revenue", value: `$${funded.reduce((s, r) => s + (r.referral_fee_amount || 0), 0).toLocaleString()}`, icon: DollarSign },
+          { label: "Revenue", value: `$${funded.reduce((s: number, r: any) => s + (r.referral_fee_amount || 0), 0).toLocaleString()}`, icon: DollarSign },
         ].map((stat) => (
           <Card key={stat.label}>
             <CardContent className="py-4">

@@ -26,11 +26,13 @@ export default async function AgentClientsPage() {
 
   type ClientInfo = { id: string; first_name: string; last_name: string; email: string; role: string };
   const clientMap = new Map<string, ClientInfo>();
-  (sellerListings || []).forEach((l) => {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  (sellerListings || []).forEach((l: any) => {
     const p = l.profiles as unknown as ClientInfo;
     if (p?.id) clientMap.set(p.id, p);
   });
-  (buyerSearches || []).forEach((s) => {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  (buyerSearches || []).forEach((s: any) => {
     const p = s.profiles as unknown as ClientInfo;
     if (p?.id) clientMap.set(p.id, p);
   });

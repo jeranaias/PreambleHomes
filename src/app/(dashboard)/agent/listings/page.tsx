@@ -20,7 +20,8 @@ export default async function AgentListingsPage() {
     .eq("assigned_agent_id", user.id)
     .order("created_at", { ascending: false });
 
-  const myListings = (listings || []) as Listing[];
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const myListings: any[] = (listings || []) as Listing[];
 
   return (
     <div className="space-y-6">

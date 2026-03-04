@@ -37,10 +37,11 @@ export default async function AdminAgentsPage() {
             <p className="py-4 text-center text-sm text-gray-500">No agents registered</p>
           ) : (
             <div className="divide-y divide-gray-100">
-              {(agents || []).map((agent) => {
+              {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
+              {(agents || []).map((agent: any) => {
                 const p = agent.profiles as Record<string, string>;
                 return (
-                  <div key={agent.id} className="flex items-center gap-4 py-4">
+                  <div key={agent.id as string} className="flex items-center gap-4 py-4">
                     <div className="flex h-10 w-10 items-center justify-center rounded-full bg-brand-100 text-sm font-bold text-brand-700">
                       {p ? getInitials(p.first_name, p.last_name) : "??"}
                     </div>

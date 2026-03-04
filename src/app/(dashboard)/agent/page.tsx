@@ -38,9 +38,12 @@ export default async function AgentDashboard() {
     .eq("status", "new")
     .order("created_at", { ascending: false });
 
-  const listings = assignedListings || [];
-  const matches = handledMatches || [];
-  const newInquiries = inquiries || [];
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const listings: any[] = assignedListings || [];
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const matches: any[] = handledMatches || [];
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const newInquiries: any[] = inquiries || [];
 
   return (
     <div className="space-y-6">
@@ -56,10 +59,10 @@ export default async function AgentDashboard() {
       {/* Stats */}
       <div className="grid grid-cols-2 gap-4 sm:grid-cols-4">
         {[
-          { label: "Active Listings", value: listings.filter((l) => l.status === "active").length, icon: FileText },
-          { label: "Active Matches", value: matches.filter((m) => !["closed_won", "closed_lost", "expired"].includes(m.status)).length, icon: Zap },
+          { label: "Active Listings", value: listings.filter((l: any) => l.status === "active").length, icon: FileText },
+          { label: "Active Matches", value: matches.filter((m: any) => !["closed_won", "closed_lost", "expired"].includes(m.status)).length, icon: Zap },
           { label: "New Inquiries", value: newInquiries.length, icon: Users },
-          { label: "Closed Deals", value: matches.filter((m) => m.status === "closed_won").length, icon: DollarSign },
+          { label: "Closed Deals", value: matches.filter((m: any) => m.status === "closed_won").length, icon: DollarSign },
         ].map((stat) => (
           <Card key={stat.label}>
             <CardContent className="py-4">

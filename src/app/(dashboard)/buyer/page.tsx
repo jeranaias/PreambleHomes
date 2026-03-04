@@ -34,7 +34,8 @@ export default async function BuyerDashboard() {
     .order("match_score", { ascending: false })
     .limit(10);
 
-  const activeSearches = (searches || []).filter((s) => s.status === "active");
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const activeSearches: any[] = (searches || []).filter((s: any) => s.status === "active");
 
   return (
     <div className="space-y-6">

@@ -75,7 +75,8 @@ export default async function AdminDashboard() {
           </CardHeader>
           <CardContent>
             <div className="divide-y divide-gray-100">
-              {(recentUsers || []).map((u) => (
+              {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
+              {(recentUsers || []).map((u: any) => (
                 <div key={u.id} className="flex items-center justify-between py-2">
                   <div>
                     <p className="text-sm font-medium text-gray-900">
@@ -103,7 +104,8 @@ export default async function AdminDashboard() {
               <p className="py-4 text-center text-sm text-gray-500">No listings yet</p>
             ) : (
               <div className="divide-y divide-gray-100">
-                {(recentListings || []).map((l) => (
+                {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
+                {(recentListings || []).map((l: any) => (
                   <div key={l.id} className="flex items-center justify-between py-2">
                     <div>
                       <p className="text-sm font-medium text-gray-900">

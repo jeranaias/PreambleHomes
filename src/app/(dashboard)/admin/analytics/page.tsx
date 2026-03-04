@@ -36,7 +36,7 @@ export default async function AdminAnalyticsPage() {
     .eq("referral_fee_paid", true);
 
   const totalRevenue = (referralRevenue || []).reduce(
-    (sum, r) => sum + (r.referral_fee_amount || 0), 0
+    (sum: number, r: Record<string, unknown>) => sum + ((r.referral_fee_amount as number) || 0), 0
   );
 
   return (

@@ -29,10 +29,11 @@ export default async function SellerDashboard() {
     .order("created_at", { ascending: false })
     .limit(5);
 
-  const myListings = (listings || []) as Listing[];
-  const activeCount = myListings.filter((l) => l.status === "active").length;
-  const totalViews = myListings.reduce((sum, l) => sum + l.views_count, 0);
-  const totalInquiries = myListings.reduce((sum, l) => sum + l.inquiries_count, 0);
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const myListings: any[] = (listings || []) as Listing[];
+  const activeCount = myListings.filter((l: any) => l.status === "active").length;
+  const totalViews = myListings.reduce((sum: number, l: any) => sum + l.views_count, 0);
+  const totalInquiries = myListings.reduce((sum: number, l: any) => sum + l.inquiries_count, 0);
 
   return (
     <div className="space-y-6">
@@ -50,7 +51,7 @@ export default async function SellerDashboard() {
         {[
           { label: "Active Profiles", value: activeCount, icon: MapPin },
           { label: "Total Views", value: totalViews, icon: Eye },
-          { label: "Saves", value: myListings.reduce((s, l) => s + l.saves_count, 0), icon: Heart },
+          { label: "Saves", value: myListings.reduce((s: number, l: any) => s + l.saves_count, 0), icon: Heart },
           { label: "Inquiries", value: totalInquiries, icon: MessageCircle },
         ].map((stat) => (
           <Card key={stat.label}>

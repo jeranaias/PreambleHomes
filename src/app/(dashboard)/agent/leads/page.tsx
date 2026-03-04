@@ -19,7 +19,8 @@ export default async function AgentLeadsPage() {
     .eq("agent_id", user.id)
     .order("created_at", { ascending: false });
 
-  const leads = inquiries || [];
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const leads: any[] = inquiries || [];
   const newLeads = leads.filter((l) => l.status === "new" || l.status === "agent_notified");
   const respondedLeads = leads.filter((l) => l.status === "responded" || l.status === "converted");
 
